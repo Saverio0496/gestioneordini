@@ -6,7 +6,7 @@ import javax.persistence.EntityManager;
 
 import it.prova.gestioneordini.dao.EntityManagerUtil;
 import it.prova.gestioneordini.dao.articolo.ArticoloDAO;
-import it.prova.gestioneordini.exception.OrdineConArticoliAssociatiException;
+import it.prova.gestioneordini.exception.ArticoloConCategorieAssociateException;
 import it.prova.gestioneordini.model.Articolo;
 
 public class ArticoloServiceImpl implements ArticoloService {
@@ -104,7 +104,7 @@ public class ArticoloServiceImpl implements ArticoloService {
 			Articolo nuovoArticoloDaEliminare = articoloDAO.getEagerCategorie(idArticolo);
 
 			if (!nuovoArticoloDaEliminare.getCategorie().isEmpty()) {
-				throw new OrdineConArticoliAssociatiException(
+				throw new ArticoloConCategorieAssociateException(
 						"Impossibile cancellare l'articolo perchè associato con delle categorie!");
 			}
 			articoloDAO.delete(nuovoArticoloDaEliminare);
