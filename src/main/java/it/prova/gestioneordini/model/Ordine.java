@@ -42,6 +42,12 @@ public class Ordine {
 	public Ordine() {
 	}
 
+	public Ordine(String nomeDestinatario, String indirizzoSpedizione, Date dataSpedizione) {
+		this.nomeDestinatario = nomeDestinatario;
+		this.indirizzoSpedizione = indirizzoSpedizione;
+		this.dataSpedizione = dataSpedizione;
+	}
+
 	public Ordine(Long id, String nomeDestinatario, String indirizzoSpedizione, Date dataSpedizione,
 			Set<Articolo> articoli) {
 		this.id = id;
