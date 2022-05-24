@@ -5,4 +5,6 @@ import it.prova.gestioneordini.model.Ordine;
 
 public interface OrdineDAO extends IBaseDAO<Ordine> {
 
+	public Ordine getEagerArticoli(Long id) throws Exception;
+
 }
