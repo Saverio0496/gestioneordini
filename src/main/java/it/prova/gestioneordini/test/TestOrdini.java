@@ -24,7 +24,9 @@ public class TestOrdini {
 					"In tabella Categoria ci sono " + categoriaServiceInstance.listAll().size() + " elementi.");
 			System.out.println(
 					"**************************** inizio batteria di test ********************************************");
-			testInserimentoOrdine(ordineServiceInstance);
+//			testInserimentoOrdine(ordineServiceInstance);
+
+			testAggiornaOrdine(ordineServiceInstance);
 
 		} catch (Throwable e) {
 			e.printStackTrace();
@@ -33,13 +35,29 @@ public class TestOrdini {
 		}
 	}
 
-	private static void testInserimentoOrdine(OrdineService ordineServiceInstance) throws Exception {
-		System.out.println("Inizio testInserimentoOrdine");
-		Ordine ordinePerTest = new Ordine("Cristian", "Via Cerce 14",
-				new SimpleDateFormat("dd/MM/yyyy").parse("24/09/2019"));
-		ordineServiceInstance.inserisciNuovo(ordinePerTest);
-		if (ordinePerTest.getId() == null)
-			throw new RuntimeException("testInserimentoOrdine fallito!");
-		System.out.println("Fine testInserimentoOrdine!");
+//	private static void testInserimentoOrdine(OrdineService ordineServiceInstance) throws Exception {
+//		System.out.println("Inizio testInserimentoOrdine");
+//		Ordine ordinePerTest = new Ordine("Cristian", "Via Cerce 14",
+//				new SimpleDateFormat("dd/MM/yyyy").parse("24/09/2019"));
+//		ordineServiceInstance.inserisciNuovo(ordinePerTest);
+//		if (ordinePerTest.getId() == null)
+//			throw new RuntimeException("testInserimentoOrdine fallito!");
+//		System.out.println("Fine testInserimentoOrdine!");
+//	}
+
+	private static void testAggiornaOrdine(OrdineService ordineServiceInstance) throws Exception {
+		System.out.println("Inizio testAggiornaOrdine");
+		Ordine ordinePerTest2 = new Ordine("Saverio", "Via Inghilterra 44",
+				new SimpleDateFormat("dd/MM/yyyy").parse("12/03/2022"));
+		ordineServiceInstance.inserisciNuovo(ordinePerTest2);
+		if (ordinePerTest2.getId() == null)
+			throw new RuntimeException("testAggiornaOrdine fallito!");
+		System.out.println("Stampa prima della modifica:");
+		System.out.println(ordinePerTest2);
+		ordinePerTest2.setNomeDestinatario("Matteo");
+		ordineServiceInstance.aggiorna(ordinePerTest2);
+		System.out.println("Stampa dopo la modifica:");
+		System.out.println(ordinePerTest2);
+		System.out.println("Fine testAggiornaOrdine!");
 	}
 }
