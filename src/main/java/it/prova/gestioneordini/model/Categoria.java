@@ -59,6 +59,11 @@ public class Categoria {
 		this.updateDateTime = updateDateTime;
 	}
 
+	public Categoria(String descrizione, String codice) {
+		this.descrizione = descrizione;
+		this.codice = codice;
+	}
+
 	public Long getId() {
 		return id;
 	}
