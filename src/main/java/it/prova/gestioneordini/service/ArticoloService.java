@@ -21,6 +21,8 @@ public interface ArticoloService {
 	public void aggiungiCategoria(Categoria categoriaInstance, Articolo articoloInstance) throws Exception;
 	
 	public Long cercaLaSommaTotalePrezziArticoli(Categoria categoriaInput) throws Exception;
+	
+	public Long cercaLaSommaPrezziArticoliMarioRossi() throws Exception;
 
 	// per injection
 	public void setArticoloDAO(ArticoloDAO articoloDAO);

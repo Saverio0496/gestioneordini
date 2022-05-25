@@ -10,5 +10,7 @@ public interface ArticoloDAO extends IBaseDAO<Articolo> {
 	
 	public Long findSumPrezziArticoliDataUnaCategoria(Categoria categoriaInput) throws Exception;
 	
+	public Long findSumPrezziArticoliMarioRossi() throws Exception;
+	
 
 }
