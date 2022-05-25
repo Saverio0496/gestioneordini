@@ -156,4 +156,19 @@ public class CategoriaServiceImpl implements CategoriaService {
 		}
 	}
 
+	public List<String> cercaTutteQuelleConOrdiniEffettuatiAFebbraio() throws Exception {
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+
+		try {
+			categoriaDAO.setEntityManager(entityManager);
+			return categoriaDAO.findCodiciDiOrdiniEffettuatiAFebbraio();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			EntityManagerUtil.closeEntityManager(entityManager);
+		}
+	}
+
 }

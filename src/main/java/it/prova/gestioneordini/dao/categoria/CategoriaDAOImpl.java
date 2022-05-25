@@ -66,4 +66,10 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 		return q.getResultList();
 	}
 
+	public List<String> findCodiciDiOrdiniEffettuatiAFebbraio() throws Exception {
+		Query q = entityManager.createNativeQuery(
+				"select distinct c.codice from categoria c inner join articolo_categoria ac on c.id=ac.categoria_id inner join articolo a on ac.articolo_id=a.id inner join ordine o on a.ordine_id=o.id where o.dataspedizione between '2022-02-01-' and '2022-02-28'");
+		return q.getResultList();
+	}
+
 }

@@ -51,7 +51,9 @@ public class TestOrdini {
 			
 //			testCercaLaSommaTotalePrezziArticoli(articoloServiceInstance, categoriaServiceInstance, ordineServiceInstance);
 			
-			testCercaQuelloPiuRecenteDataUnaCategoria(articoloServiceInstance, categoriaServiceInstance, ordineServiceInstance);
+//			testCercaQuelloPiuRecenteDataUnaCategoria(articoloServiceInstance, categoriaServiceInstance, ordineServiceInstance);
+			
+			testCercaTutteQuelleConOrdiniEffettuatiAFebbraio(articoloServiceInstance, categoriaServiceInstance, ordineServiceInstance);
 
 		} catch (Throwable e) {
 			e.printStackTrace();
@@ -204,21 +206,39 @@ public class TestOrdini {
 //		System.out.println("Fine testCercaLaSommaTotalePrezziArticoli!");
 //	}
 	
-	public static void testCercaQuelloPiuRecenteDataUnaCategoria(ArticoloService articoloServiceInstance,
-			CategoriaService categoriaServiceInstance, OrdineService ordineServiceInstance) throws Exception {
-		System.out.println("Inizio testCercaQuelloPiuRecenteDataUnaCategoria");
-		Ordine ordinePerTest8 = new Ordine("Claudio", "Via Manzoni 7",
-				new SimpleDateFormat("dd/MM/yyyy").parse("23/05/2020"));
-		Articolo articoloPerTest7 = new Articolo("Volante", "1278T", 200,
-				new SimpleDateFormat("dd/MM/yyyy").parse("16/08/2022"));
-		Categoria cartegoriaPerTest5 = new Categoria("Videogiochi", "923782R");
-		ordineServiceInstance.inserisciNuovo(ordinePerTest8);
-		articoloPerTest7.setOrdine(ordinePerTest8);
-		articoloServiceInstance.inserisciNuovo(articoloPerTest7);
-		categoriaServiceInstance.inserisciNuovo(cartegoriaPerTest5);
-		articoloServiceInstance.aggiungiCategoria(cartegoriaPerTest5, articoloPerTest7);
-		System.out.println(ordineServiceInstance.cercaQuelloPiuRecenteDataUnaCategoria(cartegoriaPerTest5));
-		System.out.println("Fine testCercaQuelloPiuRecenteDataUnaCategoria!");
+//	public static void testCercaQuelloPiuRecenteDataUnaCategoria(ArticoloService articoloServiceInstance,
+//			CategoriaService categoriaServiceInstance, OrdineService ordineServiceInstance) throws Exception {
+//		System.out.println("Inizio testCercaQuelloPiuRecenteDataUnaCategoria");
+//		Ordine ordinePerTest8 = new Ordine("Claudio", "Via Manzoni 7",
+//				new SimpleDateFormat("dd/MM/yyyy").parse("23/05/2020"));
+//		Articolo articoloPerTest7 = new Articolo("Volante", "1278T", 200,
+//				new SimpleDateFormat("dd/MM/yyyy").parse("16/08/2022"));
+//		Categoria cartegoriaPerTest5 = new Categoria("Videogiochi", "923782R");
+//		ordineServiceInstance.inserisciNuovo(ordinePerTest8);
+//		articoloPerTest7.setOrdine(ordinePerTest8);
+//		articoloServiceInstance.inserisciNuovo(articoloPerTest7);
+//		categoriaServiceInstance.inserisciNuovo(cartegoriaPerTest5);
+//		articoloServiceInstance.aggiungiCategoria(cartegoriaPerTest5, articoloPerTest7);
+//		System.out.println(ordineServiceInstance.cercaQuelloPiuRecenteDataUnaCategoria(cartegoriaPerTest5));
+//		System.out.println("Fine testCercaQuelloPiuRecenteDataUnaCategoria!");
+//	}
+	
+	public static void testCercaTutteQuelleConOrdiniEffettuatiAFebbraio(ArticoloService articoloServiceInstance, CategoriaService categoriaServiceInstance, OrdineService ordineServiceInstance) throws Exception {
+		System.out.println("Inizio testCercaTutteQuelleConOrdiniEffettuatiAFebbraio");
+		Ordine ordinePerTest9 = new Ordine("Luisa", "Via Mezzo 10",
+				new SimpleDateFormat("dd/MM/yyyy").parse("25/02/2022"));
+		Articolo articoloPerTest8 = new Articolo("Borraccia", "9000E", 3,
+				new SimpleDateFormat("dd/MM/yyyy").parse("14/09/2022"));
+		articoloPerTest8.setOrdine(ordinePerTest9);
+		ordineServiceInstance.inserisciNuovo(ordinePerTest9);
+		articoloServiceInstance.inserisciNuovo(articoloPerTest8);
+		Categoria cartegoriaPerTest6 = new Categoria("Utensili", "012135L");
+		categoriaServiceInstance.inserisciNuovo(cartegoriaPerTest6);
+		articoloServiceInstance.aggiungiCategoria(cartegoriaPerTest6, articoloPerTest8);
+		List<String> elencoCategorieTrovate = categoriaServiceInstance.cercaTutteQuelleConOrdiniEffettuatiAFebbraio();
+		for(String stringItem : elencoCategorieTrovate)
+			System.out.println(stringItem);
+		System.out.println("Fine testCercaTutteQuelleConOrdiniEffettuatiAFebbraio!");
 		
 	}
 
