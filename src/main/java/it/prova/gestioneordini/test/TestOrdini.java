@@ -1,6 +1,7 @@
 package it.prova.gestioneordini.test;
 
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import it.prova.gestioneordini.dao.EntityManagerUtil;
 import it.prova.gestioneordini.model.Articolo;
@@ -36,7 +37,9 @@ public class TestOrdini {
 
 //			testAggiungiArticoloACategoria(articoloServiceInstance, categoriaServiceInstance, ordineServiceInstance);
 
-			testAggiungiCategoriaAdArticolo(articoloServiceInstance, categoriaServiceInstance, ordineServiceInstance);
+//			testAggiungiCategoriaAdArticolo(articoloServiceInstance, categoriaServiceInstance, ordineServiceInstance);
+			
+			testRimozioneArticolo(articoloServiceInstance);
 			
 		} catch (Throwable e) {
 			e.printStackTrace();
@@ -114,19 +117,28 @@ public class TestOrdini {
 //		System.out.println("Fine testAggiungiArticoloACategoria");
 //	}
 
-	public static void testAggiungiCategoriaAdArticolo(ArticoloService articoloServiceInstance,
-			CategoriaService categoriaServiceInstance, OrdineService ordineServiceInstance) throws Exception {
-		System.out.println("Inizio testAggiungiCategoriaAdArticolo");
-		Ordine ordinePerTest5 = new Ordine("Alessio", "Via Mosca 50",
-				new SimpleDateFormat("dd/MM/yyyy").parse("25/07/2020"));
-		Articolo articoloPerTest4 = new Articolo("Cioccolata", "80563A", 2,
-				new SimpleDateFormat("dd/MM/yyyy").parse("11/09/2019"));
-		articoloPerTest4.setOrdine(ordinePerTest5);
-		ordineServiceInstance.inserisciNuovo(ordinePerTest5);
-		articoloServiceInstance.inserisciNuovo(articoloPerTest4);
-		Categoria cartegoriaPerTest2 = new Categoria("Dolci", "091032R");
-		categoriaServiceInstance.inserisciNuovo(cartegoriaPerTest2);
-		articoloServiceInstance.aggiungiCategoria(cartegoriaPerTest2, articoloPerTest4);
-		System.out.println("Fine testAggiungiCategoriaAdArticolo");
+//	public static void testAggiungiCategoriaAdArticolo(ArticoloService articoloServiceInstance,
+//			CategoriaService categoriaServiceInstance, OrdineService ordineServiceInstance) throws Exception {
+//		System.out.println("Inizio testAggiungiCategoriaAdArticolo");
+//		Ordine ordinePerTest5 = new Ordine("Alessio", "Via Mosca 50",
+//				new SimpleDateFormat("dd/MM/yyyy").parse("25/07/2020"));
+//		Articolo articoloPerTest4 = new Articolo("Cioccolata", "80563A", 2,
+//				new SimpleDateFormat("dd/MM/yyyy").parse("11/09/2019"));
+//		articoloPerTest4.setOrdine(ordinePerTest5);
+//		ordineServiceInstance.inserisciNuovo(ordinePerTest5);
+//		articoloServiceInstance.inserisciNuovo(articoloPerTest4);
+//		Categoria cartegoriaPerTest2 = new Categoria("Dolci", "091032R");
+//		categoriaServiceInstance.inserisciNuovo(cartegoriaPerTest2);
+//		articoloServiceInstance.aggiungiCategoria(cartegoriaPerTest2, articoloPerTest4);
+//		System.out.println("Fine testAggiungiCategoriaAdArticolo");
+//	}
+	
+	public static void testRimozioneArticolo(ArticoloService articoloServiceInstance) throws Exception {
+		System.out.println("Inizio testRimozioneArticolo");
+		List<Articolo> elencoArticoliPresenti = articoloServiceInstance.listAll();
+		Articolo articoloDaCancellare = elencoArticoliPresenti.get(0);
+		articoloServiceInstance.rimuovi(articoloDaCancellare.getId());
+		System.out.println("Fine testRimozioneArticolo!");
 	}
+	
 }
