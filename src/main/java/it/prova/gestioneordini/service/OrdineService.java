@@ -20,6 +20,8 @@ public interface OrdineService {
 	public List<Ordine> cercaTuttiQuelliDataUnaCategoria(Categoria categoriaInput) throws Exception;
 	
 	public Ordine cercaQuelloPiuRecenteDataUnaCategoria(Categoria categoriaInput) throws Exception;
+	
+	public List<String> cercaTuttiGliIndirizziDatoUnNumeroSerialeSpecifico(String input) throws Exception;
 
 	// per injection
 	public void setOrdineDAO(OrdineDAO ordineDAO);

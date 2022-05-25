@@ -150,4 +150,19 @@ public class OrdineServiceImpl implements OrdineService {
 		}
 	}
 
+	public List<String> cercaTuttiGliIndirizziDatoUnNumeroSerialeSpecifico(String input) throws Exception {
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+
+		try {
+			ordineDAO.setEntityManager(entityManager);
+			return ordineDAO.findAllIndirizziDatoUnNumeroSerialeSpecifico(input);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			EntityManagerUtil.closeEntityManager(entityManager);
+		}
+	}
+
 }

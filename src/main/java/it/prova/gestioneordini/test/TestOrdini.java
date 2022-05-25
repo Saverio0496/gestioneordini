@@ -48,14 +48,17 @@ public class TestOrdini {
 //			testCercaTuttiGliOrdiniDataUnaCategoria(ordineServiceInstance, categoriaServiceInstance);
 
 //			testCercaTutteQuelleDatoUnOrdine(ordineServiceInstance, categoriaServiceInstance, articoloServiceInstance);
-			
+
 //			testCercaLaSommaTotalePrezziArticoli(articoloServiceInstance, categoriaServiceInstance, ordineServiceInstance);
-			
+
 //			testCercaQuelloPiuRecenteDataUnaCategoria(articoloServiceInstance, categoriaServiceInstance, ordineServiceInstance);
-			
+
 //			testCercaTutteQuelleConOrdiniEffettuatiAFebbraio(articoloServiceInstance, categoriaServiceInstance, ordineServiceInstance);
-			
-			testCercaLaSommaPrezziArticoliMarioRossi(articoloServiceInstance, categoriaServiceInstance, ordineServiceInstance);
+
+//			testCercaLaSommaPrezziArticoliMarioRossi(articoloServiceInstance, categoriaServiceInstance, ordineServiceInstance);
+
+			testCercaTuttiGliIndirizziDatoUnNumeroSerialeSpecifico(articoloServiceInstance, categoriaServiceInstance,
+					ordineServiceInstance);
 
 		} catch (Throwable e) {
 			e.printStackTrace();
@@ -207,7 +210,7 @@ public class TestOrdini {
 //		System.out.println(articoloServiceInstance.cercaLaSommaTotalePrezziArticoli(cartegoriaPerTest4));
 //		System.out.println("Fine testCercaLaSommaTotalePrezziArticoli!");
 //	}
-	
+
 //	public static void testCercaQuelloPiuRecenteDataUnaCategoria(ArticoloService articoloServiceInstance,
 //			CategoriaService categoriaServiceInstance, OrdineService ordineServiceInstance) throws Exception {
 //		System.out.println("Inizio testCercaQuelloPiuRecenteDataUnaCategoria");
@@ -224,7 +227,7 @@ public class TestOrdini {
 //		System.out.println(ordineServiceInstance.cercaQuelloPiuRecenteDataUnaCategoria(cartegoriaPerTest5));
 //		System.out.println("Fine testCercaQuelloPiuRecenteDataUnaCategoria!");
 //	}
-	
+
 //	public static void testCercaTutteQuelleConOrdiniEffettuatiAFebbraio(ArticoloService articoloServiceInstance, CategoriaService categoriaServiceInstance, OrdineService ordineServiceInstance) throws Exception {
 //		System.out.println("Inizio testCercaTutteQuelleConOrdiniEffettuatiAFebbraio");
 //		Ordine ordinePerTest9 = new Ordine("Luisa", "Via Mezzo 10",
@@ -243,26 +246,47 @@ public class TestOrdini {
 //		System.out.println("Fine testCercaTutteQuelleConOrdiniEffettuatiAFebbraio!");
 //		
 //	}
-	
-	public static void testCercaLaSommaPrezziArticoliMarioRossi(ArticoloService articoloServiceInstance, CategoriaService categoriaServiceInstance, OrdineService ordineServiceInstance) throws Exception {
-		System.out.println("Inizio testCercaLaSommaPrezziArticoliMarioRossi");
-		Ordine ordinePerTest10 = new Ordine("Mario Rossi", "Via Mezzuomo 2",
-				new SimpleDateFormat("dd/MM/yyyy").parse("20/05/2019"));
-		Articolo articoloPerTest9 = new Articolo("Dizionario", "9322W", 25,
-				new SimpleDateFormat("dd/MM/yyyy").parse("04/05/2021"));
-		Articolo articoloPerTest10 = new Articolo("Rubrica Telefonica", "1213Y", 10,
-				new SimpleDateFormat("dd/MM/yyyy").parse("14/07/2021"));
-		articoloPerTest9.setOrdine(ordinePerTest10);
-		articoloPerTest10.setOrdine(ordinePerTest10);
-		ordineServiceInstance.inserisciNuovo(ordinePerTest10);
-		articoloServiceInstance.inserisciNuovo(articoloPerTest9);
-		articoloServiceInstance.inserisciNuovo(articoloPerTest10);
-		Categoria cartegoriaPerTest7 = new Categoria("Libri", "012914G");
-		categoriaServiceInstance.inserisciNuovo(cartegoriaPerTest7);
-		articoloServiceInstance.aggiungiCategoria(cartegoriaPerTest7, articoloPerTest9);
-		articoloServiceInstance.aggiungiCategoria(cartegoriaPerTest7, articoloPerTest10);
-		System.out.println(articoloServiceInstance.cercaLaSommaPrezziArticoliMarioRossi());
-		System.out.println("Fine testCercaLaSommaPrezziArticoliMarioRossi!");
+
+//	public static void testCercaLaSommaPrezziArticoliMarioRossi(ArticoloService articoloServiceInstance, CategoriaService categoriaServiceInstance, OrdineService ordineServiceInstance) throws Exception {
+//		System.out.println("Inizio testCercaLaSommaPrezziArticoliMarioRossi");
+//		Ordine ordinePerTest10 = new Ordine("Mario Rossi", "Via Mezzuomo 2",
+//				new SimpleDateFormat("dd/MM/yyyy").parse("20/05/2019"));
+//		Articolo articoloPerTest9 = new Articolo("Dizionario", "9322W", 25,
+//				new SimpleDateFormat("dd/MM/yyyy").parse("04/05/2021"));
+//		Articolo articoloPerTest10 = new Articolo("Rubrica Telefonica", "1213Y", 10,
+//				new SimpleDateFormat("dd/MM/yyyy").parse("14/07/2021"));
+//		articoloPerTest9.setOrdine(ordinePerTest10);
+//		articoloPerTest10.setOrdine(ordinePerTest10);
+//		ordineServiceInstance.inserisciNuovo(ordinePerTest10);
+//		articoloServiceInstance.inserisciNuovo(articoloPerTest9);
+//		articoloServiceInstance.inserisciNuovo(articoloPerTest10);
+//		Categoria cartegoriaPerTest7 = new Categoria("Libri", "012914G");
+//		categoriaServiceInstance.inserisciNuovo(cartegoriaPerTest7);
+//		articoloServiceInstance.aggiungiCategoria(cartegoriaPerTest7, articoloPerTest9);
+//		articoloServiceInstance.aggiungiCategoria(cartegoriaPerTest7, articoloPerTest10);
+//		System.out.println(articoloServiceInstance.cercaLaSommaPrezziArticoliMarioRossi());
+//		System.out.println("Fine testCercaLaSommaPrezziArticoliMarioRossi!");
+//	}
+
+	public static void testCercaTuttiGliIndirizziDatoUnNumeroSerialeSpecifico(ArticoloService articoloServiceInstance,
+			CategoriaService categoriaServiceInstance, OrdineService ordineServiceInstance) throws Exception {
+		System.out.println("Inizio testCercaTuttiGliIndirizziDatoUnNumeroSerialeSpecifico");
+		Ordine ordinePerTest11 = new Ordine("Gianluca", "Via Mosca 2",
+				new SimpleDateFormat("dd/MM/yyyy").parse("19/08/2022"));
+		Articolo articoloPerTest11 = new Articolo("Figurina", "8945H", 2,
+				new SimpleDateFormat("dd/MM/yyyy").parse("09/01/2019"));
+		articoloPerTest11.setOrdine(ordinePerTest11);
+		ordineServiceInstance.inserisciNuovo(ordinePerTest11);
+		articoloServiceInstance.inserisciNuovo(articoloPerTest11);
+		Categoria cartegoriaPerTest8 = new Categoria("Collezionismo", "311312D");
+		categoriaServiceInstance.inserisciNuovo(cartegoriaPerTest8);
+		articoloServiceInstance.aggiungiCategoria(cartegoriaPerTest8, articoloPerTest11);
+		String inputPerControllare = "45H";
+		List<String> elencoStringheTrovate = ordineServiceInstance
+				.cercaTuttiGliIndirizziDatoUnNumeroSerialeSpecifico(inputPerControllare);
+		for (String stringItem : elencoStringheTrovate)
+			System.out.println(stringItem);
+		System.out.println("Fine testCercaTuttiGliIndirizziDatoUnNumeroSerialeSpecifico");
 	}
 
 }

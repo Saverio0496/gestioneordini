@@ -74,4 +74,11 @@ public class OrdineDAOImpl implements OrdineDAO {
 		return (Ordine) q.getResultList().stream().findFirst().orElse(null);
     }
 
+	public List<String> findAllIndirizziDatoUnNumeroSerialeSpecifico(String input) throws Exception {
+		Query q = entityManager.createNativeQuery(
+				"select distinct o.indirizzospedizione from ordine o inner join articolo a on o.id=a.ordine_id inner join articolo_categoria ac on ac.articolo_id=a.id inner join categoria c on ac.categoria_id=c.id where a.numeroseriale like ?");
+		q.setParameter(1, "%" + input + "%");
+		return q.getResultList();
+	}
+
 }
