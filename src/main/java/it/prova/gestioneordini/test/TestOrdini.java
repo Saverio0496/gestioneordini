@@ -38,9 +38,13 @@ public class TestOrdini {
 //			testAggiungiArticoloACategoria(articoloServiceInstance, categoriaServiceInstance, ordineServiceInstance);
 
 //			testAggiungiCategoriaAdArticolo(articoloServiceInstance, categoriaServiceInstance, ordineServiceInstance);
+
+//			testRimozioneArticolo(articoloServiceInstance);
+
+//			testRimozioneCategoria(categoriaServiceInstance);
 			
-			testRimozioneArticolo(articoloServiceInstance);
-			
+			testRimozioneOrdine(ordineServiceInstance);
+
 		} catch (Throwable e) {
 			e.printStackTrace();
 		} finally {
@@ -132,13 +136,29 @@ public class TestOrdini {
 //		articoloServiceInstance.aggiungiCategoria(cartegoriaPerTest2, articoloPerTest4);
 //		System.out.println("Fine testAggiungiCategoriaAdArticolo");
 //	}
-	
-	public static void testRimozioneArticolo(ArticoloService articoloServiceInstance) throws Exception {
-		System.out.println("Inizio testRimozioneArticolo");
-		List<Articolo> elencoArticoliPresenti = articoloServiceInstance.listAll();
-		Articolo articoloDaCancellare = elencoArticoliPresenti.get(0);
-		articoloServiceInstance.rimuovi(articoloDaCancellare.getId());
-		System.out.println("Fine testRimozioneArticolo!");
+
+//	public static void testRimozioneArticolo(ArticoloService articoloServiceInstance) throws Exception {
+//		System.out.println("Inizio testRimozioneArticolo");
+//		List<Articolo> elencoArticoliPresenti = articoloServiceInstance.listAll();
+//		Articolo articoloDaCancellare = elencoArticoliPresenti.get(0);
+//		articoloServiceInstance.rimuovi(articoloDaCancellare.getId());
+//		System.out.println("Fine testRimozioneArticolo!");
+//	}
+
+//	public static void testRimozioneCategoria(CategoriaService categoriaServiceInstance) throws Exception {
+//		System.out.println("Inizio testRimozioneCategoria");
+//		List<Categoria> elencoCategoriePresenti = categoriaServiceInstance.listAll();
+//		Categoria categoriaDaCancellare = elencoCategoriePresenti.get(0);
+//		categoriaServiceInstance.rimuovi(categoriaDaCancellare.getId());
+//		System.out.println("Fine testRimozioneCategoria!");
+//	}
+
+	public static void testRimozioneOrdine(OrdineService ordineServiceInstance) throws Exception {
+		System.out.println("Inizio testRimozioneOrdine");
+		List<Ordine> elencoOrdiniPresenti = ordineServiceInstance.listAll();
+		Ordine ordineDaCancellare = elencoOrdiniPresenti.get(0);
+		ordineServiceInstance.rimuovi(ordineDaCancellare.getId());
+		System.out.println("Fine testRimozioneOrdine!");
 	}
-	
+
 }
