@@ -68,10 +68,9 @@ public class OrdineDAOImpl implements OrdineDAO {
 	}
 
 	public Ordine findIlPiuRecenteDataUnaCategoria(Categoria categoriaInput) throws Exception {
-		Query q = entityManager.createNativeQuery(
-				"select from ordine o inner join articolo a on o.id=a.ordine_id inner join articolo_categoria ac on a.id=ac.articolo_id inner join categoria c on c.id=ac.categoria_id where c.id= ?1 order by(o.dataspedizione) DESC");
-		q.setParameter(1, categoriaInput.getId());
-		return (Ordine) q.getResultList().stream().findFirst().orElse(null);
+		TypedQuery<Ordine> query = entityManager.createQuery(
+				"select o from Ordine o join o.articoli a join a.categorie c where c.id = ?1 order by o.dataSpedizione desc", Ordine.class);
+		return query.setParameter(1, categoriaInput.getId()).getResultList().get(0);
     }
 
 	public List<String> findAllIndirizziDatoUnNumeroSerialeSpecifico(String input) throws Exception {
