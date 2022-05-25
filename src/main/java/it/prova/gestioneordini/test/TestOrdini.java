@@ -45,7 +45,9 @@ public class TestOrdini {
 
 //			testRimozioneOrdine(ordineServiceInstance);
 
-			testCercaTuttiGliOrdiniDataUnaCategoria(ordineServiceInstance, categoriaServiceInstance);
+//			testCercaTuttiGliOrdiniDataUnaCategoria(ordineServiceInstance, categoriaServiceInstance);
+
+			testCercaTutteQuelleDatoUnOrdine(ordineServiceInstance, categoriaServiceInstance, articoloServiceInstance);
 
 		} catch (Throwable e) {
 			e.printStackTrace();
@@ -155,13 +157,30 @@ public class TestOrdini {
 //		System.out.println("Fine testRimozioneCategoria!");
 //	}
 
-	public static void testCercaTuttiGliOrdiniDataUnaCategoria(OrdineService ordineServiceInstance,
-			CategoriaService categoriaServiceInstance) throws Exception {
-		System.out.println("Inizio testCercaTuttiGliOrdiniDataUnaCategoria");
-		List<Categoria> elencoCategoriePresenti = categoriaServiceInstance.listAll();
-		Categoria categoriaPerRicerca = elencoCategoriePresenti.get(0);
-		System.out.println(ordineServiceInstance.cercaTuttiQuelliDataUnaCategoria(categoriaPerRicerca));
-		System.out.println("Fine testCercaTuttiGliOrdiniDataUnaCategoria!");
+//	public static void testCercaTuttiGliOrdiniDataUnaCategoria(OrdineService ordineServiceInstance,
+//			CategoriaService categoriaServiceInstance) throws Exception {
+//		System.out.println("Inizio testCercaTuttiGliOrdiniDataUnaCategoria");
+//		List<Categoria> elencoCategoriePresenti = categoriaServiceInstance.listAll();
+//		Categoria categoriaPerRicerca = elencoCategoriePresenti.get(0);
+//		System.out.println(ordineServiceInstance.cercaTuttiQuelliDataUnaCategoria(categoriaPerRicerca));
+//		System.out.println("Fine testCercaTuttiGliOrdiniDataUnaCategoria!");
+//	}
+
+	public static void testCercaTutteQuelleDatoUnOrdine(OrdineService ordineServiceInstance,
+			CategoriaService categoriaServiceInstance, ArticoloService articoloServiceInstance) throws Exception {
+		System.out.println("Inizio testCercaTutteQuelleDatoUnOrdine");
+		Ordine ordinePerTest6 = new Ordine("Luca", "Via Manzoni 10",
+				new SimpleDateFormat("dd/MM/yyyy").parse("25/07/2021"));
+		Articolo articoloPerTest5 = new Articolo("Camicia", "9065E", 2,
+				new SimpleDateFormat("dd/MM/yyyy").parse("14/09/2022"));
+		articoloPerTest5.setOrdine(ordinePerTest6);
+		ordineServiceInstance.inserisciNuovo(ordinePerTest6);
+		articoloServiceInstance.inserisciNuovo(articoloPerTest5);
+		Categoria cartegoriaPerTest3 = new Categoria("Vestiti", "012132P");
+		categoriaServiceInstance.inserisciNuovo(cartegoriaPerTest3);
+		articoloServiceInstance.aggiungiCategoria(cartegoriaPerTest3, articoloPerTest5);
+		System.out.println(categoriaServiceInstance.cercaTutteQuelleDatoUnOrdine(ordinePerTest6));
+		System.out.println("Fine testCercaTutteQuelleDatoUnOrdine!");
 	}
 
 }
