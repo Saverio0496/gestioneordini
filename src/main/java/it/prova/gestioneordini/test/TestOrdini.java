@@ -29,7 +29,9 @@ public class TestOrdini {
 
 //			testAggiornaOrdine(ordineServiceInstance);
 
-			testAggiungiArticoloAOrdine(articoloServiceInstance, ordineServiceInstance);
+//			testAggiungiArticoloAOrdine(articoloServiceInstance, ordineServiceInstance);
+
+			testRimuoviArticoloDaOrdine(ordineServiceInstance, articoloServiceInstance);
 
 		} catch (Throwable e) {
 			e.printStackTrace();
@@ -64,16 +66,30 @@ public class TestOrdini {
 //		System.out.println("Fine testAggiornaOrdine!");
 //	}
 
-	private static void testAggiungiArticoloAOrdine(ArticoloService articoloServiceInstance,
-			OrdineService ordineServiceInstance) throws Exception {
-		System.out.println("Inizio testAggiungiArticoloAOrdine");
-		Articolo articoloPerTest = new Articolo("Forno a microonde", "67F59", 78,
-				new SimpleDateFormat("dd/MM/yyyy").parse("10/06/2021"));
-		Ordine ordinePerTest3 = new Ordine("Laura", "Via Mosca 44",
-				new SimpleDateFormat("dd/MM/yyyy").parse("11/04/2022"));
-		articoloPerTest.setOrdine(ordinePerTest3);
-		ordineServiceInstance.inserisciNuovo(ordinePerTest3);
-		articoloServiceInstance.inserisciNuovo(articoloPerTest);
-		System.out.println("Fine testAggiungiArticoloAOrdine");
+//	private static void testAggiungiArticoloAOrdine(ArticoloService articoloServiceInstance,
+//			OrdineService ordineServiceInstance) throws Exception {
+//		System.out.println("Inizio testAggiungiArticoloAOrdine");
+//		Articolo articoloPerTest = new Articolo("Forno a microonde", "67F59", 78,
+//				new SimpleDateFormat("dd/MM/yyyy").parse("10/06/2021"));
+//		Ordine ordinePerTest3 = new Ordine("Laura", "Via Mosca 44",
+//				new SimpleDateFormat("dd/MM/yyyy").parse("11/04/2022"));
+//		articoloPerTest.setOrdine(ordinePerTest3);
+//		ordineServiceInstance.inserisciNuovo(ordinePerTest3);
+//		articoloServiceInstance.inserisciNuovo(articoloPerTest);
+//		System.out.println("Fine testAggiungiArticoloAOrdine");
+//	}
+
+	public static void testRimuoviArticoloDaOrdine(OrdineService ordineServiceInstance,
+			ArticoloService articoloServiceInstance) throws Exception {
+		System.out.println("Inizio testRimuoviArticoloDaOrdine");
+		Articolo articoloPerTest2 = new Articolo("Maglia", "6783H", 6,
+				new SimpleDateFormat("dd/MM/yyyy").parse("09/02/2020"));
+		Ordine ordinePerTest4 = new Ordine("Lucia", "Via Castello 57",
+				new SimpleDateFormat("dd/MM/yyyy").parse("17/08/2021"));
+		articoloPerTest2.setOrdine(ordinePerTest4);
+		ordineServiceInstance.inserisciNuovo(ordinePerTest4);
+		articoloServiceInstance.inserisciNuovo(articoloPerTest2);
+		articoloServiceInstance.rimuovi(articoloPerTest2.getId());
+		System.out.println("Fine testRimuoviArticoloDaOrdine!");
 	}
 }
