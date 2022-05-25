@@ -140,4 +140,19 @@ public class ArticoloServiceImpl implements ArticoloService {
 		}
 	}
 
+	public Long cercaLaSommaTotalePrezziArticoli(Categoria categoriaInput) throws Exception {
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+
+		try {
+			articoloDAO.setEntityManager(entityManager);
+			return articoloDAO.findSumPrezziArticoliDataUnaCategoria(categoriaInput);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			EntityManagerUtil.closeEntityManager(entityManager);
+		}
+	}
+
 }
