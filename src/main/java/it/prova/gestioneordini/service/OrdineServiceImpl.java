@@ -135,4 +135,19 @@ public class OrdineServiceImpl implements OrdineService {
 		}
 	}
 
+	public Ordine cercaQuelloPiuRecenteDataUnaCategoria(Categoria categoriaInput) throws Exception {
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+
+		try {
+			ordineDAO.setEntityManager(entityManager);
+			return ordineDAO.findIlPiuRecenteDataUnaCategoria(categoriaInput);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			EntityManagerUtil.closeEntityManager(entityManager);
+		}
+	}
+
 }

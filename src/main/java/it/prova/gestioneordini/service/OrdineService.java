@@ -18,6 +18,8 @@ public interface OrdineService {
 	public void rimuovi(Long idOrdine) throws Exception;
 	
 	public List<Ordine> cercaTuttiQuelliDataUnaCategoria(Categoria categoriaInput) throws Exception;
+	
+	public Ordine cercaQuelloPiuRecenteDataUnaCategoria(Categoria categoriaInput) throws Exception;
 
 	// per injection
 	public void setOrdineDAO(OrdineDAO ordineDAO);

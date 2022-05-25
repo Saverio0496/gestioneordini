@@ -1,5 +1,6 @@
 package it.prova.gestioneordini.dao.ordine;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -65,5 +66,12 @@ public class OrdineDAOImpl implements OrdineDAO {
 		q.setParameter(1, categoriaInput.getId());
 		return q.getResultList();
 	}
+
+	public Ordine findIlPiuRecenteDataUnaCategoria(Categoria categoriaInput) throws Exception {
+		Query q = entityManager.createNativeQuery(
+				"select from ordine o inner join articolo a on o.id=a.ordine_id inner join articolo_categoria ac on a.id=ac.articolo_id inner join categoria c on c.id=ac.categoria_id where c.id= ?1 order by(o.dataspedizione) DESC");
+		q.setParameter(1, categoriaInput.getId());
+		return (Ordine) q.getResultList().stream().findFirst().orElse(null);
+    }
 
 }
