@@ -44,7 +44,7 @@ public class Articolo {
 	private LocalDateTime updateDateTime;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ordine_id", nullable=false)
+	@JoinColumn(name = "ordine_id", nullable = false)
 	private Ordine ordine;
 
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)
@@ -52,6 +52,13 @@ public class Articolo {
 	private Set<Categoria> categorie = new HashSet<Categoria>();
 
 	public Articolo() {
+	}
+
+	public Articolo(String descrizione, String numeroSeriale, int prezzoSingolo, Date dataInserimento) {
+		this.descrizione = descrizione;
+		this.numeroSeriale = numeroSeriale;
+		this.prezzoSingolo = prezzoSingolo;
+		this.dataInserimento = dataInserimento;
 	}
 
 	public Articolo(Long id, String descrizione, String numeroSeriale, int prezzoSingolo, Date dataInserimento,
@@ -101,6 +108,7 @@ public class Articolo {
 		this.updateDateTime = updateDateTime;
 		this.categorie = categorie;
 	}
+
 
 	public Long getId() {
 		return id;
