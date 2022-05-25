@@ -42,8 +42,10 @@ public class TestOrdini {
 //			testRimozioneArticolo(articoloServiceInstance);
 
 //			testRimozioneCategoria(categoriaServiceInstance);
-			
-			testRimozioneOrdine(ordineServiceInstance);
+
+//			testRimozioneOrdine(ordineServiceInstance);
+
+			testCercaTuttiGliOrdiniDataUnaCategoria(ordineServiceInstance, categoriaServiceInstance);
 
 		} catch (Throwable e) {
 			e.printStackTrace();
@@ -153,12 +155,13 @@ public class TestOrdini {
 //		System.out.println("Fine testRimozioneCategoria!");
 //	}
 
-	public static void testRimozioneOrdine(OrdineService ordineServiceInstance) throws Exception {
-		System.out.println("Inizio testRimozioneOrdine");
-		List<Ordine> elencoOrdiniPresenti = ordineServiceInstance.listAll();
-		Ordine ordineDaCancellare = elencoOrdiniPresenti.get(0);
-		ordineServiceInstance.rimuovi(ordineDaCancellare.getId());
-		System.out.println("Fine testRimozioneOrdine!");
+	public static void testCercaTuttiGliOrdiniDataUnaCategoria(OrdineService ordineServiceInstance,
+			CategoriaService categoriaServiceInstance) throws Exception {
+		System.out.println("Inizio testCercaTuttiGliOrdiniDataUnaCategoria");
+		List<Categoria> elencoCategoriePresenti = categoriaServiceInstance.listAll();
+		Categoria categoriaPerRicerca = elencoCategoriePresenti.get(0);
+		System.out.println(ordineServiceInstance.cercaTuttiQuelliDataUnaCategoria(categoriaPerRicerca));
+		System.out.println("Fine testCercaTuttiGliOrdiniDataUnaCategoria!");
 	}
 
 }

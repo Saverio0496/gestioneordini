@@ -3,6 +3,7 @@ package it.prova.gestioneordini.service;
 import java.util.List;
 
 import it.prova.gestioneordini.dao.ordine.OrdineDAO;
+import it.prova.gestioneordini.model.Categoria;
 import it.prova.gestioneordini.model.Ordine;
 
 public interface OrdineService {
@@ -15,6 +16,8 @@ public interface OrdineService {
 	public void inserisciNuovo(Ordine ordineInstance) throws Exception;
 
 	public void rimuovi(Long idOrdine) throws Exception;
+	
+	public List<Ordine> cercaTuttiQuelliDataUnaCategoria(Categoria categoriaInput) throws Exception;
 
 	// per injection
 	public void setOrdineDAO(OrdineDAO ordineDAO);
